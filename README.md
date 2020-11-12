@@ -144,7 +144,7 @@ attribute that gets set on initialization.
 
 You should write code that responds to
 `MP3Importer.new('./spec/fixtures').import`. Google around for how to get a list
-of files in a directory! Make sure you only get `.mp3` files.
+of files in a directory! Hint: you may want to look at the [documentation for Ruby's built-in Dir class](https://ruby-doc.org/core-2.6.1/Dir.html). Make sure you only get `.mp3` files.
 
 Since we have to send the filenames to the `Song` class, we'll end up calling
 the following code in the `#import` method:
