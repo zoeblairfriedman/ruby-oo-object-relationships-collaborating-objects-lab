@@ -1,4 +1,4 @@
-# Ruby Collaborating Objects Lab
+# Collaborating Objects Lab
 
 ## Objective
 
@@ -40,14 +40,14 @@ Thinking about it this way will get us started. From this breakdown, it looks
 like the `MP3Importer` relies on `Song` in order to do its job of parsing
 filenames. `Song` relies on the `Artist` instances to build associations.
 Therefore, we'll start by working on `Artist`. Keep in mind though, that you
-will need to be build out related classes together in order to pass some tests,
-as they work in collaboration.
+will need to build out related classes together in order to pass some tests, as
+they work in collaboration.
 
 ### `Artist` class
 
-An `Artist` be initialized with a name and should have an attribute accessor
-for this name. The class should have an `@@all` class variable and store all
-`Artist` instances in this variable.
+An `Artist` should be initialized with a name and should have an attribute
+accessor for this name. The class should have an `@@all` class variable and
+store all `Artist` instances in this variable.
 
 #### `Artist.all`
 
@@ -55,7 +55,7 @@ This class method should return all `Artist` instances.
 
 #### `Artist#add_song`
 
-This instance method exists to tell a pased in `Song` instance it belongs to
+This instance method exists to tell a passed in `Song` instance it belongs to
 _this_ `Artist` instance.
 
 #### `Artist#songs`
@@ -84,21 +84,20 @@ and store all `Song` instances in this variable.
 
 #### `Song.all`
 
-This class method should return all `Artist` instances.
+This class method should return all `Song` instances.
 
 #### `Song.new_by_filename`
 
 This method will do four things:
 
 1. It must parse a filename to find the song name and artist name. (_Hint: every
-   file separates the song and artist with a `" - "`_). Now we put those values
-   to use.
+   file separates the song and artist with a `" - "`_).
 
-2. From here, we will create a new song instance using the string we gathered
+2. From here, we will create a new song instance using the song name we gathered
    from the filename.
 
-3. We'll also want to associate that new song with an artist. Use the `artist`
-   attribute accessor to assign this
+3. We'll also want to associate that new song with the appropriate artist. Use
+   the `artist` attribute accessor to assign this
 
 4. Return the new song instance.
 
@@ -136,21 +135,21 @@ with the `Artist` class:
 
 ### `MP3Importer` class
 
-Build an `MP3Importer` class that parses a directory of files and sends the
-filenames to a song class to create a library of music with artists that are
-unique. To do this, you'll need two methods: `Mp3Importer#files` and
-`MP3Importer#import`. Your `MP3Importer` class should also have a `path`
-attribute that gets set on initialization.
+Build an `MP3Importer` class that:
 
-You should write code that responds to
-`MP3Importer.new('./spec/fixtures').import`. Google around for how to get a list
-of files in a directory! Hint: you may want to look at the [documentation for Ruby's built-in Dir class](https://ruby-doc.org/core-2.6.1/Dir.html). Make sure you only get `.mp3` files.
+1. On initialize, takes a path as an argument and creates an instance of
+   `MP3Importer`, setting the `path` attribute.
 
-Since we have to send the filenames to the `Song` class, we'll end up calling
-the following code in the `#import` method:
-`Song.new_by_filename(some_filename)`. This will send us to the `Song` class,
-specifically `Song.new_by_filename` and handle the creation of `Song` instances
-and their associated `Artist` instances.
+2. Contains a `#files` method that parses the files in the `path`, returning an
+   array that contains the file names. Make sure you only get `.mp3` files.
+   **Hint**: Google around for how to get a list of files in a directory! You
+   may want to look at the [documentation for Ruby's built-in Dir
+   class](https://ruby-doc.org/core-2.6.1/Dir.html).
+
+3. Contains an `#import` method that sends the song names to the `Song` class.
+   Specifically, the method should call `Song.new_by_filename`, which will
+   handle the creation of `Song` instances and their associated `Artist`
+   instances.
 
 ### Conclusion
 
