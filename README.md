@@ -67,7 +67,7 @@ select only the ones that are associated with this `Artist` instance.
 #### `Artist.find_or_create_by_name`
 
 This class method should take the name that is passed in (remember, it will be a
-string), and do one of two things. Find the artist instance that has that name
+string), and do one of two things: find the artist instance that has that name
 or create one if it doesn't exist. Either way, the return value of the method
 will be an instance of an artist with the name attribute filled out.
 
@@ -78,7 +78,7 @@ This instance methods outputs the names of all songs associated with this
 
 ### `Song` class
 
-A `Song` should be iniitialized with a name and have attribute accessors for
+A `Song` should be initialized with a name and have attribute accessors for
 **name** and **artist**. The `Song` class should have an `@@all` class variable
 and store all `Song` instances in this variable.
 
@@ -113,32 +113,29 @@ gets the artist object. Let's call this `Song#artist_name=`.
 This method will do two things. Both of these things will involve collaboration
 with the `Artist` class:
 
-1. Turn the artist's name as a string into an `Artist` object
+1. Turn the artist's name as a string into an `Artist` object.
 
     First we need to get the instance of the `Artist` class that represents that
     artist. There are two possibilities here:
 
-    1. Either we have to create that `Artist` instance
-    2. Or it already exists and we have to find that `Artist` instance.
+    1. Either we have to create that `Artist` instance, or
+    2. it already exists and we have to find that `Artist` instance.
 
-    To achieve this, we'll need to collaborate with the `Artist` class. We want to
-    send an artist's name (a string--remember we are getting this from the
-    parsed filename) to the `Artist` class to achieve the functionality described
-    above in #1 and #2. This sounds like a great place to use method
+    To achieve this, we'll need to collaborate with the `Artist` class. We want
+    to send an artist's name (a string &mdash; remember we are getting this from
+    the parsed filename) to the `Artist` class and either create or find the
+    artist instance. This sounds like a great place to use method
     `Artist.find_or_create_by_name`.
 
-2. Assign the song to the artist (Since an artist has many songs, we'll want to
-   make this association)
-
-    Now that we have the artist instance, we'll want to again collaborate with
-    the `Artist` class by calling on the `Artist#add_song(some_song)` method.
+2. Assign the song to the artist. Now that we have the artist instance, we'll
+    want to again collaborate with the `Artist` class by calling on the
+    `Artist#add_song(some_song)` method.
 
 ### `MP3Importer` class
 
 Build an `MP3Importer` class that:
 
-1. On initialize, takes a path as an argument and creates an instance of
-   `MP3Importer`, setting the `path` attribute.
+1. Has a `path` attribute that gets set on initialization.
 
 2. Contains a `#files` method that parses the files in the `path`, returning an
    array that contains the file names. Make sure you only get `.mp3` files.
